@@ -5,9 +5,8 @@ package hivething
 import (
 	"errors"
 	"fmt"
-	"github.com/apache/thrift/lib/go/thrift"
+	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/tchow-stripe/hivething/TCLIService"
-	"log"
 )
 
 // Options for opened Hive sessions.
@@ -29,12 +28,10 @@ type Connection struct {
 func Connect(host string, options Options) (*Connection, error) {
 	transport, err := thrift.NewTSocket(host)
 	if err != nil {
-		log.Printf("NewTSocket: %v\n", err)
 		return nil, err
 	}
 
 	if err := transport.Open(); err != nil {
-		log.Printf("Open: %v\n", err)
 		return nil, err
 	}
 
@@ -52,7 +49,6 @@ func Connect(host string, options Options) (*Connection, error) {
 
 	session, err := client.OpenSession(*tcliservice.NewTOpenSessionReq())
 	if err != nil {
-		log.Printf("OpenSession: %v\n", err)
 		return nil, err
 	}
 

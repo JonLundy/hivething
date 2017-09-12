@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/apache/thrift/lib/go/thrift"
+	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/tchow-stripe/hivething/TCLIService"
 )
 

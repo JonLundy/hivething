@@ -6,8 +6,7 @@ package tcliservice
 import (
 	"bytes"
 	"fmt"
-	"github.com/apache/thrift/lib/go/thrift"
-	"log"
+	"git.apache.org/thrift.git/lib/go/thrift"
 )
 
 // (needed to ensure safety because of naive import list construction.)
@@ -96,7 +95,6 @@ func NewTCLIServiceClientProtocol(t thrift.TTransport, iprot thrift.TProtocol, o
 //  - Req
 func (p *TCLIServiceClient) OpenSession(req TOpenSessionReq) (r TOpenSessionResp, err error) {
 	if err = p.sendOpenSession(req); err != nil {
-		log.Printf("OpenSession: %v\n", err);
 		return
 	}
 	return p.recvOpenSession()
@@ -110,18 +108,15 @@ func (p *TCLIServiceClient) sendOpenSession(req TOpenSessionReq) (err error) {
 	}
 	p.SeqId++
 	if err = oprot.WriteMessageBegin("OpenSession", thrift.CALL, p.SeqId); err != nil {
-		log.Printf("WriteMessageBegin: %v\n", err)
 		return
 	}
 	args := OpenSessionArgs{
 		Req: req,
 	}
 	if err = args.Write(oprot); err != nil {
-		log.Printf("Write: %v\n", err)
 		return
 	}
 	if err = oprot.WriteMessageEnd(); err != nil {
-		log.Printf("WriteMessageEnd: %v\n", err)
 		return
 	}
 	return oprot.Flush()
