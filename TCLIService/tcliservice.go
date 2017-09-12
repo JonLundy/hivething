@@ -96,7 +96,7 @@ func NewTCLIServiceClientProtocol(t thrift.TTransport, iprot thrift.TProtocol, o
 //  - Req
 func (p *TCLIServiceClient) OpenSession(req TOpenSessionReq) (r TOpenSessionResp, err error) {
 	if err = p.sendOpenSession(req); err != nil {
-		log.Println("OpenSession: " + err);
+		log.Printf("OpenSession: ", err);
 		return
 	}
 	return p.recvOpenSession()
@@ -110,18 +110,18 @@ func (p *TCLIServiceClient) sendOpenSession(req TOpenSessionReq) (err error) {
 	}
 	p.SeqId++
 	if err = oprot.WriteMessageBegin("OpenSession", thrift.CALL, p.SeqId); err != nil {
-		log.Println("WriteMessageBegin: " + err)
+		log.Printf("WriteMessageBegin: ", err)
 		return
 	}
 	args := OpenSessionArgs{
 		Req: req,
 	}
 	if err = args.Write(oprot); err != nil {
-		log.Println("Write: " + err)
+		log.Printf("Write: ", err)
 		return
 	}
 	if err = oprot.WriteMessageEnd(); err != nil {
-		log.Println("WriteMessageEnd: " + err)
+		log.Printf("WriteMessageEnd: ", err)
 		return
 	}
 	return oprot.Flush()
