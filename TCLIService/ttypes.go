@@ -6,7 +6,7 @@ package tcliservice
 import (
 	"bytes"
 	"fmt"
-	"git.apache.org/thrift.git/lib/go/thrift"
+	"github.com/apache/thrift/lib/go/thrift"
 )
 
 // (needed to ensure safety because of naive import list construction.)
@@ -2430,7 +2430,7 @@ func (p *TByteValue) writeField1(oprot thrift.TProtocol) (err error) {
 		if err := oprot.WriteFieldBegin("value", thrift.BYTE, 1); err != nil {
 			return fmt.Errorf("%T write field begin error 1:value: %s", p, err)
 		}
-		if err := oprot.WriteByte(byte(*p.Value)); err != nil {
+		if err := oprot.WriteByte(*p.Value); err != nil {
 			return fmt.Errorf("%T.value (1) field write error: %s", p, err)
 		}
 		if err := oprot.WriteFieldEnd(); err != nil {

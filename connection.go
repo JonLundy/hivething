@@ -5,8 +5,8 @@ package hivething
 import (
 	"errors"
 	"fmt"
-	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/derekgr/hivething/TCLIService"
+	"github.com/apache/thrift/lib/go/thrift"
+	"github.com/tchow-stripe/hivething/TCLIService"
 )
 
 // Options for opened Hive sessions.
